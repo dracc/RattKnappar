@@ -33,7 +33,6 @@ target_compile_definitions(left_module
 )
 
 target_link_libraries(left_module
-  pico_i2c_slave
   hardware_i2c
   pico_stdlib
 )
@@ -50,9 +49,27 @@ target_compile_definitions(right_module
 )
 
 target_link_libraries(right_module
-  pico_i2c_slave
   hardware_i2c
   pico_stdlib
 )
 
 pico_add_extra_outputs(right_module)
+
+# Middleman
+add_executable(middle
+  src/middle.cpp
+)
+
+target_compile_definitions(middle
+  PUBLIC __MIDDLE
+)
+
+target_link_libraries(middle
+  pico_i2c_slave
+  hardware_i2c
+  hardware_spi
+  pico_stdlib
+  pico_multicore
+)
+
+pico_add_extra_outputs(middle)
