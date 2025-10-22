@@ -18,6 +18,13 @@ project(RattKnappar)
 #set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # initialize the Raspberry Pi Pico SDK
 pico_sdk_init()
+add_compile_options(
+	-Wall
+	-Wextra
+	-pedantic
+	$<$<COMPILE_LANGUAGE:C>:-std=gnu11>
+	$<$<COMPILE_LANGUAGE:CXX>:-std=gnu++11>
+)
 
 include_directories(include)
 
@@ -25,8 +32,6 @@ include_directories(include)
 add_executable(left_module
   src/modules.cpp
 )
-
-target_compile_options(left_module PUBLIC -Wall -Wextra -pedantic -std=gnu++11)
 
 target_compile_definitions(left_module
   PUBLIC __LEFT
