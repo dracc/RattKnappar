@@ -70,11 +70,12 @@ target_compile_definitions(middle
 )
 
 target_link_libraries(middle
-  pico_i2c_slave
+  hardware_dma
   hardware_i2c
   hardware_spi
-  pico_stdlib
+  pico_i2c_slave
   pico_multicore
+  pico_stdlib
 )
 
 pico_add_extra_outputs(middle)
